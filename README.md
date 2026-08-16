@@ -2,7 +2,7 @@
 
 A simple, lightweight plain-text notepad for Linux, built with Qt6/C++.
 
-##Rquires QT6 dev tools to build
+## Reuires QT6 dev tools to build
 
 
 **Ubuntu/Debian:**
