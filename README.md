@@ -22,7 +22,7 @@ sudo pacman -S cmake base-devel qt6-base
 
 ### Build & Install
 ```bash
-git clone https://github.com/Procurador1337/Libre_Note
+git clone https://github.com/Procurador1337/LibreNote
 cd LibreNote
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
