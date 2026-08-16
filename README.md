@@ -20,6 +20,10 @@ sudo dnf install cmake gcc-c++ qt6-qtbase-devel
 sudo pacman -S cmake base-devel qt6-base
 ```
 
+### LFS install
+
+https://github.com/fusion809/lfs_packaging/blob/master/LibreNote/build.sh
+
 ### Build & Install
 ```bash
 git clone https://github.com/Procurador1337/LibreNote
