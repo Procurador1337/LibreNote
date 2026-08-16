@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=LibreNote
+Comment=A simple plain-text notepad
+Exec=LibreNote
+Icon=librenote
+Terminal=false
+Categories=Utility;TextEditor;
