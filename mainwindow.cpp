@@ -194,44 +194,24 @@ void MainWindow::newFile()
     updateTitle();
 }
 
-
-void MainWindow::openFile()
+void MainWindow::loadFile(const QString &path)
 {
-    if (!maybeSave())
-        return;
-
-    QString fileName = QFileDialog::getOpenFileName(
-        this,
-        "Open File"
-        );
-
-    if (fileName.isEmpty())
-        return;
-
-    QFile file(fileName);
-
+    QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QMessageBox::critical(
-            this,
-            "Open Failed",
-            "Could not open the file."
-            );
-
         return;
-    }
-
-    QTextStream stream(&file);
-
-    editor->setPlainText(stream.readAll());
-
-    currentFile = fileName;
-
-    editor->document()->setModified(false);
-
+    
+    QTextStream in(&file);
+    editor->setPlainText(in.readAll());
+    currentFile = path;
     updateTitle();
 }
 
+void MainWindow::openFile()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Open File");
+    if (!path.isEmpty())
+        loadFile(path);
+}
 
 bool MainWindow::saveFile()
 {
