@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void loadFile(const QString &path); 
 
 protected:
     void closeEvent(QCloseEvent *event) override;
