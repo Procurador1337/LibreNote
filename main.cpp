@@ -52,11 +52,14 @@ void createDefaultSettings()
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
     createDefaultSettings();
 
     MainWindow window;
-    window.show();
 
+    QStringList args = app.arguments();
+    if (args.size() > 1)
+        window.loadFile(args.at(1));
+
+    window.show();
     return app.exec();
 }
