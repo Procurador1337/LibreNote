@@ -1,0 +1,47 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.2'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+
+      - name: Configure CMake
+        run: cmake -B build -S . -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Deploy Qt dependencies
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path build -Recurse -Filter "LibreNote.exe" | Select-Object -First 1
+          if (-not $exe) { throw "Could not find LibreNote.exe under build/ - check your target name/output path" }
+          windeployqt --release $exe.FullName
+
+      - name: Package as zip
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path build -Recurse -Filter "LibreNote.exe" | Select-Object -First 1
+          Compress-Archive -Path "$($exe.DirectoryName)\*" -DestinationPath LibreNote-Windows.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LibreNote-Windows
+          path: LibreNote-Windows.zip
