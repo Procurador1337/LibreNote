@@ -37,6 +37,10 @@ sudo make install
 This installs the binary, a `.desktop` entry, and an icon, so LibreNote will
 appear in your application menu.
 
+### Windows users
+
+Do not throw away the files, the .exe requires them to run properly
+
 ## Features
 - Plain-text editing with configurable font, colors, tab size, word wrap
 - Fully remappable keyboard shortcuts via `~/.config/LibreNote/settings.txt`
