@@ -39,7 +39,7 @@ appear in your application menu.
 
 ### Windows users
 
-Do not throw away the files, the .exe requires them to run properly
+Do not throw away the files, the .exe requires them to run properly.
 
 ## Features
 - Plain-text editing with configurable font, colors, tab size, word wrap
